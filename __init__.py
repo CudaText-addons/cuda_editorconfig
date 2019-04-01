@@ -13,11 +13,13 @@ class Command:
         fn = ed_self.get_filename()
         try:
             c = get_properties(fn)
+            if not c: return
+            self.apply(ed_self, c)
+            
         except EditorConfigError:
             s = 'Error getting EditorConfig props: '+fn
             print(s)
             msg_status(s)
-            return
             
-        if not c: return
+    def apply(self, ed, c):
         print('EditorConfig:', c)
