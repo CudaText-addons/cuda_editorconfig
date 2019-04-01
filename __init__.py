@@ -1,6 +1,7 @@
 import sys
 import os
 from cudatext import *
+import cudatext_cmd as cmds
 from .editorconfig import get_properties, EditorConfigError
 
 def str2bool(s):
@@ -21,6 +22,7 @@ class Command:
             print(s+': '+fn)
             
     def apply(self, ed, c):
+    
         print('EditorConfig:', c)
         
         opt = c.get('indent_style')
@@ -31,4 +33,25 @@ class Command:
         
         opt = c.get('indent_size')
         if opt:
-            ed.set_prop(PROP_TAB_SIZE, int(opt))
+            try:
+                n = int(opt)
+                ed.set_prop(PROP_TAB_SIZE, n)
+            except:
+                pass
+
+        opt = c.get('tab_width')
+        if opt:
+            try:
+                n = int(opt)
+                ed.set_prop(PROP_TAB_SIZE, n)
+            except:
+                pass
+
+        opt = c.get('end_of_line')
+        if opt=='lf':
+            ed.cmd(cmds.cmd_LineEndUnix)
+        elif opt=='crlf':
+            ed.cmd(cmds.cmd_LineEndWin)
+        elif opt=='cr':
+            ed.cmd(cmds.cmd_LineEndMac)
+
