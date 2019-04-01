@@ -1,0 +1,11 @@
+[info]
+title=EditorConfig
+desc=Some description
+type=cudatext-plugin
+subdir=cuda_editorconfig
+homepage=
+
+[item1]
+section=events
+events=on_open
+
