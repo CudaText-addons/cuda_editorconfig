@@ -55,3 +55,15 @@ class Command:
         elif opt=='cr':
             ed.cmd(cmds.cmd_LineEndMac)
 
+        opt = c.get('charset')
+        if opt=='latin1':
+            ed.cmd(cmds.cmd_Encoding_iso1_NoReload)
+        elif opt=='utf-8':
+            ed.cmd(cmds.cmd_Encoding_utf8nobom_NoReload)
+        elif opt=='utf-8-bom':
+            ed.cmd(cmds.cmd_Encoding_utf8bom_NoReload)
+        elif opt=='utf-16be':
+            ed.cmd(cmds.cmd_Encoding_utf16be_NoReload)
+        elif opt=='utf-16le':
+            ed.cmd(cmds.cmd_Encoding_utf16le_NoReload)
+
