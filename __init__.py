@@ -36,6 +36,7 @@ class Command:
             try:
                 n = int(opt)
                 ed.set_prop(PROP_TAB_SIZE, n)
+                ed.set_prop(PROP_INDENT_SIZE, n)
             except:
                 pass
 
@@ -66,4 +67,3 @@ class Command:
             ed.cmd(cmds.cmd_Encoding_utf16be_NoReload)
         elif opt=='utf-16le':
             ed.cmd(cmds.cmd_Encoding_utf16le_NoReload)
-
