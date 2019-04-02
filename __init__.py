@@ -14,13 +14,12 @@ class Command:
             if c:
                 self.apply(ed_self, c)
         except EditorConfigError:
-            s = 'Error getting EditorConfig properties'
-            msg_status(s)
-            print(s+': '+fn)
+            print('Error getting EditorConfig properties: '+fn)
+
 
     def apply(self, ed, c):
 
-        print('EditorConfig:', c)
+        #print('EditorConfig:', c)
 
         opt = c.get('indent_style')
         if opt=='space':
