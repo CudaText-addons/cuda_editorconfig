@@ -4,11 +4,8 @@ from cudatext import *
 import cudatext_cmd as cmds
 from .editorconfig import get_properties, EditorConfigError
 
-def str2bool(s):
-    return s=='true'
-
 class Command:
-    
+
     def on_open(self, ed_self):
 
         fn = ed_self.get_filename()
@@ -20,17 +17,17 @@ class Command:
             s = 'Error getting EditorConfig properties'
             msg_status(s)
             print(s+': '+fn)
-            
+
     def apply(self, ed, c):
-    
+
         print('EditorConfig:', c)
-        
+
         opt = c.get('indent_style')
         if opt=='space':
             ed.set_prop(PROP_TAB_SPACES, True)
         elif opt=='tab':
             ed.set_prop(PROP_TAB_SPACES, False)
-        
+
         opt = c.get('indent_size')
         if opt:
             try:
@@ -67,3 +64,16 @@ class Command:
             ed.cmd(cmds.cmd_Encoding_utf16be_NoReload)
         elif opt=='utf-16le':
             ed.cmd(cmds.cmd_Encoding_utf16le_NoReload)
+
+        if app_api_version()>='1.0.278':
+            opt = c.get('trim_trailing_whitespace')
+            if opt=='true':
+                ed.set_prop(PROP_SAVING_TRIM_SPACES, True)
+            elif opt=='false':
+                ed.set_prop(PROP_SAVING_TRIM_SPACES, False)
+
+            opt = c.get('insert_final_newline')
+            if opt=='true':
+                ed.set_prop(PROP_SAVING_FORCE_FINAL_EOL, True)
+            elif opt=='false':
+                ed.set_prop(PROP_SAVING_FORCE_FINAL_EOL, False)
