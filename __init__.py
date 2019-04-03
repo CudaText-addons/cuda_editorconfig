@@ -51,7 +51,7 @@ class Command:
             elif opt=='crlf':
                 app_proc(PROC_NEWDOC_NEWLINE_SET, 2)
             elif opt=='cr':
-                pass #not supported
+                app_proc(PROC_NEWDOC_NEWLINE_SET, 3)
 
             opt = c.get('charset')
             if opt=='latin1':
