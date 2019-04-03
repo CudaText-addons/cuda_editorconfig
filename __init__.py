@@ -47,23 +47,23 @@ class Command:
         if app_api_version()>='1.0.279':
             opt = c.get('end_of_line')
             if opt=='lf':
-                app_proc(PROC_NEWDOC_NEWLINE_SET, 1)
+                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 1)
             elif opt=='crlf':
-                app_proc(PROC_NEWDOC_NEWLINE_SET, 2)
+                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 2)
             elif opt=='cr':
-                app_proc(PROC_NEWDOC_NEWLINE_SET, 3)
+                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 3)
 
             opt = c.get('charset')
             if opt=='latin1':
-                app_proc(PROC_NEWDOC_ENC_SET, 'iso88591')
+                app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'iso88591')
             elif opt=='utf-8':
-                app_proc(PROC_NEWDOC_ENC_SET, 'utf8')
+                app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'utf8')
             elif opt=='utf-8-bom':
-                app_proc(PROC_NEWDOC_ENC_SET, 'utf8_bom')
+                app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'utf8_bom')
             elif opt=='utf-16be':
-                app_proc(PROC_NEWDOC_ENC_SET, 'utf16be_bom')
+                app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'utf16be_bom')
             elif opt=='utf-16le':
-                app_proc(PROC_NEWDOC_ENC_SET, 'utf16le_bom')
+                app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'utf16le_bom')
 
         if app_api_version()>='1.0.278':
             opt = c.get('trim_trailing_whitespace')
