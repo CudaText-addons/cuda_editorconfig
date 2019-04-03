@@ -44,25 +44,26 @@ class Command:
             except:
                 pass
 
-        opt = c.get('end_of_line')
-        if opt=='lf':
-            ed.cmd(cmds.cmd_LineEndUnix)
-        elif opt=='crlf':
-            ed.cmd(cmds.cmd_LineEndWin)
-        elif opt=='cr':
-            ed.cmd(cmds.cmd_LineEndMac)
+        if app_api_version()>='1.0.279':
+            opt = c.get('end_of_line')
+            if opt=='lf':
+                app_proc(PROC_NEWDOC_NEWLINE_SET, 1)
+            elif opt=='crlf':
+                app_proc(PROC_NEWDOC_NEWLINE_SET, 2)
+            elif opt=='cr':
+                pass #not supported
 
-        opt = c.get('charset')
-        if opt=='latin1':
-            ed.cmd(cmds.cmd_Encoding_iso1_NoReload)
-        elif opt=='utf-8':
-            ed.cmd(cmds.cmd_Encoding_utf8nobom_NoReload)
-        elif opt=='utf-8-bom':
-            ed.cmd(cmds.cmd_Encoding_utf8bom_NoReload)
-        elif opt=='utf-16be':
-            ed.cmd(cmds.cmd_Encoding_utf16be_NoReload)
-        elif opt=='utf-16le':
-            ed.cmd(cmds.cmd_Encoding_utf16le_NoReload)
+            opt = c.get('charset')
+            if opt=='latin1':
+                app_proc(PROC_NEWDOC_ENC_SET, 'iso88591')
+            elif opt=='utf-8':
+                app_proc(PROC_NEWDOC_ENC_SET, 'utf8')
+            elif opt=='utf-8-bom':
+                app_proc(PROC_NEWDOC_ENC_SET, 'utf8_bom')
+            elif opt=='utf-16be':
+                app_proc(PROC_NEWDOC_ENC_SET, 'utf16be_bom')
+            elif opt=='utf-16le':
+                app_proc(PROC_NEWDOC_ENC_SET, 'utf16le_bom')
 
         if app_api_version()>='1.0.278':
             opt = c.get('trim_trailing_whitespace')
