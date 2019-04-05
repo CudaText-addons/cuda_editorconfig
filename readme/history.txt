@@ -1,4 +1,7 @@
 
+2019.04.05
+- fixed applying "end_of_line", now it's applied on file saving (requires CudaText 1.77.6)
+
 2019.04.03
 - fixed applying options "charset" and "end_of_line" (requires CudaText 1.77.6)
 

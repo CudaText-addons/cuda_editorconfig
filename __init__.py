@@ -17,6 +17,15 @@ class Command:
             print('Error getting EditorConfig properties: '+fn)
 
 
+    def on_save_pre(self, ed_self):
+
+        s = ed_self.get_prop(PROP_TAG, 'newline:')
+        if s:
+            prev = ed_self.get_prop(PROP_NEWLINE, '')
+            if prev!=s:
+                ed_self.set_prop(PROP_NEWLINE, s)
+                print('EditorConfig: saving with line ends "%s"'%s)
+
     def apply(self, ed, c):
 
         #print('EditorConfig:', c)
@@ -44,15 +53,13 @@ class Command:
             except:
                 pass
 
-        if app_api_version()>='1.0.279':
+        if app_api_version()>='1.0.280':
             opt = c.get('end_of_line')
-            if opt=='lf':
-                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 1)
-            elif opt=='crlf':
-                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 2)
-            elif opt=='cr':
-                app_proc(PROC_CONFIG_NEWDOC_EOL_SET, 3)
+            if opt:
+                # don't change now, change in on_save_pre
+                ed.set_prop(PROP_TAG, 'newline:'+opt)
 
+        if app_api_version()>='1.0.279':
             opt = c.get('charset')
             if opt=='latin1':
                 app_proc(PROC_CONFIG_NEWDOC_ENC_SET, 'iso88591')
