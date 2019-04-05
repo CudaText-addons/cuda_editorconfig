@@ -19,12 +19,13 @@ class Command:
 
     def on_save_pre(self, ed_self):
 
-        s = ed_self.get_prop(PROP_TAG, 'newline:')
-        if s:
-            prev = ed_self.get_prop(PROP_NEWLINE, '')
-            if prev!=s:
-                ed_self.set_prop(PROP_NEWLINE, s)
-                print('EditorConfig: saving with line ends "%s"'%s)
+        if app_api_version()>='1.0.280':
+            s = ed_self.get_prop(PROP_TAG, 'newline:')
+            if s:
+                prev = ed_self.get_prop(PROP_NEWLINE, '')
+                if prev!=s:
+                    ed_self.set_prop(PROP_NEWLINE, s)
+                    print('EditorConfig: saving with line ends "%s"'%s)
 
     def apply(self, ed, c):
 
