@@ -5,8 +5,6 @@ for all opened files. supports the following options:
 - "indent_style"; it sets CudaText option "tab_spaces" in memory
 - "indent_size"; it sets CudaText options "tab_size" and "indent_size" in memory
 - "tab_width"; it sets CudaText option "tab_size" in memory
-
-beginning with CudaText 1.77.6:
 - "end_of_line"; it changes line endings on file saving
 - "charset"; it sets CudaText option "newdoc_encoding" but doesn't change current file encoding
 - "trim_trailing_whitespace"; it's applied on file saving
