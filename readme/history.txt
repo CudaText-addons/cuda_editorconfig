@@ -1,3 +1,5 @@
+2025.03.14
++ add: update 'editorconfig' module to 0.17
 
 2019.04.05
 - fixed applying "end_of_line", now it's applied on file saving (requires CudaText 1.77.6)
