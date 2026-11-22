@@ -8,7 +8,7 @@ class Command:
 
     def on_open(self, ed_self):
 
-        fn = ed_self.get_filename()
+        fn = ed_self.get_prop(PROP_FN, '')
         try:
             c = get_properties(fn)
             if c:
